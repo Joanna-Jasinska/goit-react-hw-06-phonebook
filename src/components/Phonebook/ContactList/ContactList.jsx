@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { setFilter } from 'redux/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { getFilter } from 'redux/selectors';
 import css from './../Phonebook.module.css';
 
-export const ContactList = ({
-  contacts,
-  filter,
-  setFilter,
-  deleteContactHandle,
-}) => {
+export const ContactList = ({ contacts, deleteContactHandle }) => {
+  const filter = useSelector(getFilter);
+  const dispatch = useDispatch();
   const filterContacts = (filter, contacts) => {
     return contacts.filter(
       el =>
@@ -45,7 +45,7 @@ export const ContactList = ({
         type="text"
         id="filter"
         name="filter"
-        onChange={e => setFilter(e.target.value)}
+        onChange={e => dispatch(setFilter(e.target.value.trim()))}
         value={filter}
         title="Will show only contacts that match search quota written here."
       />
@@ -53,7 +53,7 @@ export const ContactList = ({
         <button
           className={`${css.button} ${css.delete}`}
           type="button"
-          onClick={e => setFilter('')}
+          onClick={e => dispatch(setFilter(''))}
         >
           Clear
         </button>
@@ -84,7 +84,5 @@ ContactList.propTypes = {
       id: PropTypes.string.isRequired,
     })
   ).isRequired,
-  filter: PropTypes.string.isRequired,
-  setFilter: PropTypes.func.isRequired,
   deleteContactHandle: PropTypes.func.isRequired,
 };

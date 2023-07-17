@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './../Phonebook.module.css';
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 // { name, number, addContactHandle, setName, setNumber }
 export const ContactForm = ({
   name,
@@ -17,7 +17,7 @@ export const ContactForm = ({
           addContactHandle(e, {
             name: name,
             number: number,
-            id: nanoid(),
+            // id: nanoid(),
           })
         }
       >
