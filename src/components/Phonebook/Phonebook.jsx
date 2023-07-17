@@ -5,7 +5,7 @@ import { ContactList } from './ContactList/ContactList';
 import { Title } from './Title/Title';
 import { addContact, deleteContactById } from 'redux/contactsSlice';
 import { setFilter } from 'redux/filterSlice';
-import { getContacts, getFilter } from 'redux/selectors';
+import { getContacts } from 'redux/selectors';
 import css from './Phonebook.module.css';
 export const Phonebook = () => {
   const [name, setName] = useState('');
